@@ -1,0 +1,168 @@
+<!doctype html>
+<html data-dpr="1" style="font-size: 36px">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no,viewport-fit=cover"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>学信档案</title>
+    <link
+      rel="icon"
+      href="https://t1.chei.com.cn/archive/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://t1.chei.com.cn/archive/fonts/chsi-font.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://t3.chei.com.cn/archive/mobile/css/app.css?v=20250711"
+    />
+    <link
+      rel="stylesheet"
+      href="https://t1.chei.com.cn/common/ch/iconfont.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://t1.chei.com.cn/common/css/font/RareWords/RareWordsFonts.css"
+    />
+  </head>
+  <body style="font-size: 12px">
+    <div id="app" class="my-container">
+      <img
+        src="https://t1.chei.com.cn/common/wap/images/share_xxda.jpg"
+        width="0"
+        height="0"
+        style="position: absolute; top: -100px; left: 0px"
+      />
+      <div
+        class="white-header van-nav-bar van-hairline--bottom"
+        style="z-index: 1"
+      >
+        <div class="van-nav-bar__left">
+          <i class="van-icon van-icon-arrow-left van-nav-bar__arrow"
+            ><!----><!----></i
+          ><!---->
+        </div>
+        <div class="van-ellipsis van-nav-bar__title">高等学籍</div>
+        <div class="van-nav-bar__right"><!----></div>
+      </div>
+      <div class="vote-part">
+        <div id="vote_wap" style="display: block">
+          <a
+            href="https://xz.chsi.com.cn/cp/survey/yhdy3/show.action?from=archive_xjxx_wap"
+            style="display: block"
+            class="vote-jy-part vote_bg_zcsx"
+          ></a>
+        </div>
+      </div>
+      <div class="padding16 xj-index chsi-font">
+        <div class="jd-res-div" style="margin-bottom: 0.533rem">
+          <div class="flex-box">
+            <div class="flex1">
+              <span class="scan-txewm"></span>查看图像采集码
+            </div>
+            <div class="arrow-right"><i class="iconfont"></i></div>
+          </div>
+          <div class="sanjiao"><em></em><span></span></div>
+        </div>
+        <!---->
+        <!---->
+        <!---->
+        <div class="top-card">
+          <div class="van-row">
+            <div class="van-col van-col--9">
+              <div class="flex-box">
+                <div class="flex1">
+                  <div class="img-div">
+                    <img src="" class="full-img" id="xj-photo" />
+                  </div>
+                  <p class="text">录取照片</p>
+                </div>
+                <div class="flex1">
+                  <div class="img-div">
+                    <img
+                      src="https://t4.chei.com.cn/archive/images/common/no-photo.png"
+                    />
+                  </div>
+                  <p class="text">学历照片</p>
+                </div>
+              </div>
+            </div>
+            <div class="van-col van-col--15">
+              <h5 class="nameFamily" id="xj-name"></h5>
+              <p id="xj-profile"></p>
+            </div>
+          </div>
+          <div class="top-bottom-img xj-detail-img">
+            <div class="yxmc-wrap">
+              <div class="yxmc" id="xj-school"></div>
+              <div class="cc xj-cc-lable" id="xj-degree"></div>
+            </div>
+            <div class="des" id="xj-description"></div>
+          </div>
+        </div>
+        <div class="xj-c">
+          <ul class="gdjy-view-ul" id="xj-details"></ul>
+        </div>
+        <div class="van-row">
+          <div class="van-col van-col--24">
+            <a href="https://my.chsi.com.cn/archive/bab/xj/show.action"
+              ><button
+                class="my-btn van-button van-button--primary van-button--normal"
+              >
+                <span class="van-button__text">查看验证报告</span>
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+    </div>
+    <script src="./data/loader.js"></script>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get("id");
+
+        if (!id) {
+          window.location.href = "./index.html";
+          return;
+        }
+
+        function renderData(data) {
+          document.getElementById("xj-photo").src = data.photo;
+          document.getElementById("xj-name").textContent = data.name;
+          document.getElementById("xj-profile").textContent =
+            data.gender + "\u3000" + data.birthday;
+          document.getElementById("xj-school").textContent = data.school;
+          document.getElementById("xj-degree").textContent = data.degree;
+          document.getElementById("xj-description").textContent =
+            data.description;
+
+          document.getElementById("xj-details").innerHTML = data.details
+            .map(function (item) {
+              return (
+                "<li><div class=\"left\">" +
+                item.label +
+                "</div><div class=\"right\">" +
+                item.value +
+                "</div></li>"
+              );
+            })
+            .join("");
+        }
+
+        window.loadXjData(id).then(renderData).catch(console.error);
+      })();
+    </script>
+  </body>
+</html>
