@@ -1,1 +1,1 @@
-window.USER_IDS = ["ren5","ren6"];
+window.USER_IDS = ["ren5","ren6","ren7"];
