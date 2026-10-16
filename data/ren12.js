@@ -4,7 +4,7 @@ window.XJ_DATA = {
   "password": "123456",
   "photo": "./loginDa/ren12.jpg",
   "name": "何玉环",
-  "idNo": "522426200612030046",
+  "idNo": "500110200612030046",
   "gender": "女",
   "birthday": "2006年12月03日",
   "school": "上海交通大学",
